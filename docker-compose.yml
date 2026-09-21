@@ -1,0 +1,44 @@
+services:
+  fronted:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    env_file:
+      - .env
+    ports:
+      - "4000:4000"
+    depends_on:
+      - postgres
+      - redis
+      - ollama
+
+  postgres:
+    image: postgres:18.6
+  env_file:
+    - .env
+  volumes:
+    - postgres-data:/var/lib/postgresql
+
+  ollama:
+    image: ollama/ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+
+  redis:
+    image: redis:8.0
+    env_file:
+      - .env
+    volumes:
+    - redisdata:/data
+
+volumes:
+  postgres:
+  ollama:
+  redis:
