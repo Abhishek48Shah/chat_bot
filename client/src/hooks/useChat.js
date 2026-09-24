@@ -1,4 +1,5 @@
 import { useState, useCallback, useRef } from "react";
+import toast from "react-hot-toast";
 import { sendMessage as sendMessageApi } from "../api/chatService";
 import { t } from "../i18n";
 
@@ -11,9 +12,6 @@ const timestamp = () =>
 export default function useChat(lang) {
   const [welcomeId] = useState(() => nextId());
 
-  // The welcome message stores NO translated text — just a marker.
-  // Its text is computed fresh on every render from the current `lang`,
-  // so switching language updates it instantly with no effect needed.
   const [messages, setMessages] = useState(() => [
     {
       id: welcomeId,
@@ -24,11 +22,8 @@ export default function useChat(lang) {
   ]);
 
   const [isBotTyping, setIsBotTyping] = useState(false);
-  const [error, setError] = useState(null);
   const lastUserMessageRef = useRef(null);
 
-  // Derived, not stored: real messages pass through unchanged,
-  // the welcome message gets its text computed on the fly.
   const displayMessages = messages.map((m) =>
     m.isWelcome ? { ...m, text: t("welcome_message", lang) } : m
   );
@@ -48,7 +43,6 @@ export default function useChat(lang) {
   const send = useCallback(
     async (text) => {
       if (!text.trim()) return;
-      setError(null);
       lastUserMessageRef.current = text;
 
       appendMessage("user", text);
@@ -62,7 +56,7 @@ export default function useChat(lang) {
         });
       } catch (err) {
         console.error("Chat send failed:", err);
-        setError(t("error_generic", lang));
+        toast.error(t("error_generic", lang));
         updateMessageText(botMsgId, () => "⚠️ Something went wrong generating a reply.");
       } finally {
         setIsBotTyping(false);
@@ -78,11 +72,9 @@ export default function useChat(lang) {
   }, [send]);
 
   return {
-    messages: displayMessages, // note: returning the derived version now
+    messages: displayMessages,
     isBotTyping,
-    error,
     send,
     retryLast,
-    dismissError: () => setError(null),
   };
 }

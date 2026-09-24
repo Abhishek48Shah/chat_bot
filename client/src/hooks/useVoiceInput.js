@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from "react";
 import { transcribeAudio } from "../api/voiceService";
+import toast from "react-hot-toast";
 
 function detectSupport() {
   return (
@@ -39,7 +40,7 @@ export default function useVoiceInput({ onTranscript }) {
           onTranscript?.(text);
         } catch (err) {
             console.error("Transcription failed:", err);
-          setError("Couldn't transcribe that. Try again or type instead.");
+          toast.error("Couldn't transcribe that. Try again or type instead.");
         } finally {
           setIsProcessing(false);
         }
@@ -50,8 +51,8 @@ export default function useVoiceInput({ onTranscript }) {
       setIsRecording(true);
     } catch (err) {
         console.error("Microphone access denied or unavailable:", err);
-      setError("Microphone access denied or unavailable.");
-      setSupported(false); // this one's fine — it's inside an event handler, not an effect
+       toast.error("Microphone access denied or unavailable.");
+      setSupported(false);
     }
   }, [supported, onTranscript]);
 
