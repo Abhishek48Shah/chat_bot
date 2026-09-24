@@ -95,3 +95,4 @@ data: {"content":"!"}
 event: done
 data: {}
 ask ai to how to handle this kind of response and use MarkdownParser 
+no need to test cause you will need to download a lot of things  and we will be  doing  it all day  on the 10th
