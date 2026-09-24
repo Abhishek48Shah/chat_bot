@@ -1,0 +1,97 @@
+1)Chat bot api -> localhost:4000/api/chat/stream
+you should set header as Content-Type: application/json
+Response will come in this formate 
+
+event: token
+data: {"content":"Hi"}
+
+event: token
+data: {"content":" there"}
+
+event: token
+data: {"content":"!"}
+
+event: token
+data: {"content":" How"}
+
+event: token
+data: {"content":" are"}
+
+event: token
+data: {"content":" you"}
+
+event: token
+data: {"content":" doing"}
+
+event: token
+data: {"content":" today"}
+
+event: token
+data: {"content":"?"}
+
+event: token
+data: {"content":" I"}
+
+event: token
+data: {"content":" can"}
+
+event: token
+data: {"content":" help"}
+
+event: token
+data: {"content":" you"}
+
+event: token
+data: {"content":" with"}
+
+event: token
+data: {"content":" all"}
+
+event: token
+data: {"content":" sorts"}
+
+event: token
+data: {"content":" of"}
+
+event: token
+data: {"content":" things"}
+
+event: token
+data: {"content":" –"}
+
+event: token
+data: {"content":" just"}
+
+event: token
+data: {"content":" let"}
+
+event: token
+data: {"content":" me"}
+
+event: token
+data: {"content":" know"}
+
+event: token
+data: {"content":" what"}
+
+event: token
+data: {"content":"’"}
+
+event: token
+data: {"content":"s"}
+
+event: token
+data: {"content":" on"}
+
+event: token
+data: {"content":" your"}
+
+event: token
+data: {"content":" mind"}
+
+event: token
+data: {"content":"!"}
+
+event: done
+data: {}
+ask ai to how to handle this kind of response and use MarkdownParser 
