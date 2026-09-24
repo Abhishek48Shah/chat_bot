@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { RiRobot2Fill } from "react-icons/ri";
+import logo from "../../assets/logo.png";
 
 const APP_NAME = "Bharatpur Assistant";
 
@@ -28,14 +28,15 @@ export default function SplashScreen({ visible, caption, onFinish, holdMs = 2200
             initial={{ scale: 0.6, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 text-white shadow-lg"
+            className="mb-2"
           >
-            <motion.div
-              animate={{ rotate: [0, -8, 8, -4, 4, 0] }}
+            <motion.img
+              src={logo}
+              alt="App logo"
+              animate={{ rotate: [0, -6, 6, -3, 3, 0] }}
               transition={{ duration: 1.2, delay: 0.4, ease: "easeInOut" }}
-            >
-              <RiRobot2Fill size={32} />
-            </motion.div>
+              className="h-35 w-35 object-contain"
+            />
           </motion.div>
 
           {/* App name, letter-by-letter */}

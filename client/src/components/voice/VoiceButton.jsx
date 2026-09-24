@@ -10,7 +10,7 @@ export default function VoiceButton({
   disabled,
   supported = true,
 }) {
-  if (!supported) return null; // gracefully hide if browser can't record
+  if (!supported) return null; 
 
   const handleClick = () => {
     if (isRecording) {
@@ -36,16 +36,16 @@ export default function VoiceButton({
       </AnimatePresence>
 
       <motion.button
-        type="button"
-        onClick={handleClick}
-        disabled={disabled || isProcessing}
-        whileTap={{ scale: 0.9 }}
-        className={`relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors disabled:bg-gray-200 disabled:text-gray-400 ${
-          isRecording
-            ? "bg-red-500 text-white"
-            : "bg-indigo-50 text-indigo-500 hover:bg-indigo-100"
-        }`}
-      >
+  type="button"
+  onClick={handleClick}
+  disabled={disabled || isProcessing}
+  whileTap={{ scale: 0.9 }}
+  className={`relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors disabled:bg-gray-200 disabled:text-gray-400 ${
+    isRecording
+      ? "bg-red-500 text-white"
+      : "bg-brand-light text-brand hover:bg-brand/10"
+  }`}
+>
         {isRecording && (
           <motion.span
             className="absolute inset-0 rounded-full bg-red-400"

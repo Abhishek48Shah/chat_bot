@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { RiRobot2Fill } from "react-icons/ri";
+import logo from "../../assets/logo.png";
 
 export default function TypingIndicator() {
   return (
@@ -9,9 +9,11 @@ export default function TypingIndicator() {
       exit={{ opacity: 0 }}
       className="flex items-end gap-2"
     >
-      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 text-white">
-        <RiRobot2Fill size={17} />
-      </div>
+      <img
+        src={logo}
+        alt="Assistant"
+        className="h-10 w-10 shrink-0 rounded-full object-contain"
+      />
       <div className="flex items-center gap-1 rounded-2xl rounded-bl-sm border border-gray-100 bg-white px-4 py-3 shadow-sm">
         {[0, 1, 2].map((i) => (
           <motion.span

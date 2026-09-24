@@ -36,17 +36,17 @@ export default function ChatInput({ onSend, disabled, voiceSlot }) {
         onKeyDown={handleKeyDown}
         disabled={disabled}
         placeholder={t("input_placeholder")}
-        className="max-h-32 flex-1 resize-none rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none placeholder:text-gray-400 focus:border-indigo-400 focus:bg-white focus:ring-2 focus:ring-indigo-100 disabled:opacity-50"
+       className="max-h-32 flex-1 resize-none rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none placeholder:text-gray-400 focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand-light disabled:opacity-50"
       />
 
       <motion.button
-        type="submit"
-        disabled={disabled || !value.trim()}
-        whileTap={{ scale: 0.9 }}
-        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-indigo-500 text-white transition-colors disabled:bg-gray-200 disabled:text-gray-400"
-      >
-        <FiSend size={16} />
-      </motion.button>
+  type="submit"
+  disabled={disabled || !value.trim()}
+  whileTap={{ scale: 0.9 }}
+  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand text-white transition-colors hover:bg-brand-dark disabled:bg-gray-200 disabled:text-gray-400"
+>
+  <FiSend size={16} />
+</motion.button>
     </form>
   );
 }

@@ -8,7 +8,7 @@ export default function VoiceWaveform({ active }) {
       {bars.map((i) => (
         <motion.span
           key={i}
-          className="w-[3px] rounded-full bg-indigo-500"
+          className="w-[3px] rounded-full bg-brand"
           animate={
             active
               ? { height: ["30%", "100%", "45%", "80%", "30%"] }

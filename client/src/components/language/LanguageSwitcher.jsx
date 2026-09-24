@@ -30,12 +30,12 @@ export default function LanguageSwitcher({ currentLang, onChange, disabled }) {
 
   return (
     <div ref={ref} className="relative">
-      <button
-        type="button"
-        disabled={disabled}
-        onClick={() => setOpen((o) => !o)}
-        className="flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-600 shadow-sm transition-colors hover:bg-gray-50 disabled:opacity-50"
-      >
+     <button
+  type="button"
+  disabled={disabled}
+  onClick={() => setOpen((o) => !o)}
+  className="flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-brand shadow-sm transition-colors hover:bg-brand-light disabled:opacity-50"
+>
         <FiGlobe size={13} />
         <span>{active.native}</span>
         <motion.span
@@ -60,11 +60,11 @@ export default function LanguageSwitcher({ currentLang, onChange, disabled }) {
                 <button
                   type="button"
                   onClick={() => handleSelect(lang.code)}
-                  className={`flex w-full items-center justify-between px-3 py-2 text-left text-sm transition-colors hover:bg-indigo-50 ${
-                    lang.code === currentLang
-                      ? "font-medium text-indigo-600"
-                      : "text-gray-700"
-                  }`}
+                  className={`flex w-full items-center justify-between px-3 py-2 text-left text-sm transition-colors hover:bg-brand-light ${
+  lang.code === currentLang
+    ? "font-medium text-brand"
+    : "text-gray-700"
+}`}
                 >
                   <span>{lang.native}</span>
                   <span className="text-xs text-gray-400">{lang.label}</span>

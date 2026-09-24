@@ -1,19 +1,19 @@
-import { RiRobot2Fill } from "react-icons/ri";
-import { useLanguageContext } from "../../context/LanguageContext";
+import logo from "../../assets/logo.png";
 
 export default function Header({ rightSlot }) {
-    const { t } = useLanguageContext();
   return (
     <div className="flex items-center justify-between border-b border-gray-100 bg-white px-4 py-3 sm:rounded-t-2xl">
       <div className="flex items-center gap-2.5">
-        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 text-white">
-          <RiRobot2Fill size={18} />
-        </div>
+        <img
+          src={logo}
+          alt="App logo"
+          className="h-17 w-17 rounded-full object-contain"
+        />
         <div>
-       
-
-<h1 className="text-sm font-semibold text-gray-800">{t("app_title")}</h1>
-<p className="text-xs text-gray-400">{t("app_subtitle")}</p>
+          <h1 className="text-sm font-semibold text-gray-800">
+            Bharatpur Tourist Assistant
+          </h1>
+          <p className="text-xs text-gray-400">Ask me anything, anytime</p>
         </div>
       </div>
 

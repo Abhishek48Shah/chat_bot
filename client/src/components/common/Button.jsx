@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 const VARIANTS = {
-  primary: "bg-indigo-500 text-white hover:bg-indigo-600 disabled:bg-gray-200 disabled:text-gray-400",
+  primary: "bg-brand text-white hover:bg-brand-dark disabled:bg-gray-200 disabled:text-gray-400",
   secondary: "bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 disabled:opacity-50",
   danger: "bg-red-500 text-white hover:bg-red-600 disabled:bg-gray-200 disabled:text-gray-400",
   ghost: "bg-transparent text-gray-500 hover:bg-gray-100 disabled:opacity-50",

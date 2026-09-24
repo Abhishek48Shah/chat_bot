@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { FiUser } from "react-icons/fi";
-import { RiRobot2Fill } from "react-icons/ri";
+import logo from "../../assets/logo.png";
 
 export default function MessageBubble({ role, text, timestamp }) {
   const isUser = role === "user";
@@ -13,19 +13,23 @@ export default function MessageBubble({ role, text, timestamp }) {
       className={`flex items-end gap-2 ${isUser ? "flex-row-reverse" : "flex-row"}`}
     >
       {/* Avatar */}
-      <div
-        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-white ${
-          isUser ? "bg-indigo-500" : "bg-gradient-to-br from-emerald-400 to-teal-500"
-        }`}
-      >
-        {isUser ? <FiUser size={16} /> : <RiRobot2Fill size={17} />}
-      </div>
+      {isUser ? (
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand text-white">
+          <FiUser size={16} />
+        </div>
+      ) : (
+        <img
+          src={logo}
+          alt="Assistant"
+          className="h-10 w-10 shrink-0 rounded-full object-contain"
+        />
+      )}
 
       {/* Bubble */}
       <div
         className={`max-w-[75%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed shadow-sm ${
           isUser
-            ? "rounded-br-sm bg-indigo-500 text-white"
+            ? "rounded-br-sm bg-brand text-white"
             : "rounded-bl-sm bg-white text-gray-800 border border-gray-100"
         }`}
       >
@@ -33,7 +37,7 @@ export default function MessageBubble({ role, text, timestamp }) {
         {timestamp && (
           <span
             className={`mt-1 block text-[10px] ${
-              isUser ? "text-indigo-100/80" : "text-gray-400"
+              isUser ? "text-brand-light/80" : "text-gray-400"
             }`}
           >
             {timestamp}

@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #6366f1;
-  --color-primary-dark: #4f46e5;
+  --color-brand: #1a4d2e;       /* matches logo green */
+  --color-brand-dark: #123a22;  /* hover/active shade */
+  --color-brand-light: #e6f0ea; /* soft background tint */
 }
 
 * {
