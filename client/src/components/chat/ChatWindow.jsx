@@ -8,10 +8,12 @@ export default function ChatWindow({
   disabled,
   voiceSlot,
   headerSlot,
+  errorSlot,
 }) {
   return (
     <div className="mx-auto flex h-screen w-full max-w-2xl flex-col bg-gray-50 shadow-xl sm:h-[90vh] sm:rounded-2xl sm:my-4 overflow-hidden">
       {headerSlot}
+      {errorSlot}
       <MessageList messages={messages} isBotTyping={isBotTyping} />
       <ChatInput onSend={onSend} disabled={disabled} voiceSlot={voiceSlot} />
     </div>

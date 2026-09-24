@@ -1,5 +1,6 @@
 import { useState, useCallback, useRef } from "react";
 import { sendMessage as sendMessageApi } from "../api/chatService";
+import { t } from "../i18n";
 
 let idCounter = 0;
 const nextId = () => ++idCounter;
@@ -12,7 +13,7 @@ export default function useChat(lang) {
     {
       id: nextId(),
       role: "bot",
-      text: "Namaste! Ask me anything about visiting Bharatpur — places, food, transport, or events.",
+     text: t("welcome_message", lang),
       timestamp: timestamp(),
     },
   ]);

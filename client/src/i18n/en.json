@@ -1,0 +1,15 @@
+{
+  "app_title": "Bharatpur Tourist Assistant",
+  "app_subtitle": "Ask me anything, anytime",
+  "input_placeholder": "Ask about places to visit in Bharatpur...",
+  "send_button": "Send",
+  "mic_start": "Start recording",
+  "mic_stop": "Stop recording",
+  "transcribing": "Transcribing…",
+  "typing": "Typing…",
+  "error_generic": "Couldn't reach the assistant. Check your connection and try again.",
+  "error_mic": "Microphone access denied or unavailable.",
+  "error_transcribe": "Couldn't transcribe that. Try again or type instead.",
+  "retry": "Retry",
+  "welcome_message": "Namaste! Ask me anything about visiting Bharatpur — places, food, transport, or events."
+}

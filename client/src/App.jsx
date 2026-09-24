@@ -1,14 +1,65 @@
-{/* This is for mock tyipig test only */}
+import { LanguageProvider, useLanguageContext } from "./context/LanguageContext";
+import useChat from "./hooks/useChat";
+import useVoiceInput from "./hooks/useVoiceInput";
 
-import { useState } from "react";
 import ChatWindow from "./components/chat/ChatWindow";
+import Header from "./components/common/Header";
+import ErrorBanner from "./components/common/ErrorBanner";
+import LanguageSwitcher from "./components/language/LanguageSwitcher";
+import VoiceButton from "./components/voice/VoiceButton";
 
-const dummyMessages = [
-  { id: 1, role: "bot", text: "Namaste! Ask me anything about visiting Bharatpur.", timestamp: "10:00 AM" },
-  { id: 2, role: "user", text: "What should I visit?", timestamp: "10:01 AM" },
-];
+function ChatApp() {
+  const { lang, setLang, t } = useLanguageContext();
+  const { messages, isBotTyping, error, send, retryLast, dismissError } =
+    useChat(lang);
+
+  const { isRecording, isProcessing, supported, startRecording, stopRecording } =
+    useVoiceInput({
+      onTranscript: (text) => send(text), // transcribed speech becomes a normal message
+    });
+
+  return (
+    <ChatWindow
+      messages={messages}
+      isBotTyping={isBotTyping}
+      onSend={send}
+      disabled={isBotTyping}
+      headerSlot={
+        <Header
+          rightSlot={
+            <LanguageSwitcher
+              currentLang={lang}
+              onChange={setLang}
+              disabled={isBotTyping}
+            />
+          }
+        />
+      }
+      errorSlot={
+        <ErrorBanner
+          message={error}
+          onRetry={retryLast}
+          onDismiss={dismissError}
+        />
+      }
+      voiceSlot={
+        <VoiceButton
+          isRecording={isRecording}
+          isProcessing={isProcessing}
+          onStart={startRecording}
+          onStop={stopRecording}
+          disabled={isBotTyping}
+          supported={supported}
+        />
+      }
+    />
+  );
+}
 
 export default function App() {
-  const [typing, setTyping] = useState(true);
-  return <ChatWindow messages={dummyMessages} isBotTyping={typing} onSend={() => {}} />;
+  return (
+    <LanguageProvider>
+      <ChatApp />
+    </LanguageProvider>
+  );
 }
