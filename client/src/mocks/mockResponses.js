@@ -35,8 +35,12 @@ export function getMockReply(message, lang = "en") {
   const dict = RESPONSES[lang] || RESPONSES.en;
   const lower = message.toLowerCase();
 
-  if (/visit|place|see|attraction|hera|ghumn/i.test(lower)) return dict.visit;
-  if (/food|eat|khana|restaurant|khaddya/i.test(lower)) return dict.food;
-  if (/transport|bus|travel|yatayat|reach/i.test(lower)) return dict.transport;
+  const visitPattern = /visit|place|see|attraction|hera|ghumn|घुम्न|ठाउँ|हेर्न/i;
+  const foodPattern = /food|eat|khana|restaurant|khaddya|खाना|खाद्य|भोजन/i;
+  const transportPattern = /transport|bus|travel|yatayat|reach|यातायात|बस/i;
+
+  if (visitPattern.test(lower)) return dict.visit;
+  if (foodPattern.test(lower)) return dict.food;
+  if (transportPattern.test(lower)) return dict.transport;
   return dict.default;
 }
