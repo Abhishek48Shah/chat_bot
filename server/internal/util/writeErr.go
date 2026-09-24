@@ -7,20 +7,20 @@ import (
 	"net/http"
 )
 
-type ApiError struct {
+type apiError struct {
 	status  int
 	message any
 	err     error
 }
 
-func (e *ApiError) Error() string {
+func (e *apiError) Error() string {
 	return fmt.Sprintf("%s", e.message)
 }
 
 type envelope map[string]any
 
 func WriteError(w http.ResponseWriter, r *http.Request, err error, logger *slog.Logger) {
-	var apiErr *ApiError
+	var apiErr *apiError
 	if errors.As(err, &apiErr) {
 		logger.Error("api", "error", apiErr.err, "method", r.Method, "uri", r.RequestURI)
 		env := envelope{"error": apiErr.message}
@@ -31,32 +31,35 @@ func WriteError(w http.ResponseWriter, r *http.Request, err error, logger *slog.
 	}
 	http.Error(w, "internal server error", http.StatusInternalServerError)
 }
-func BadRequestErr(message string, err error) *ApiError {
-	return &ApiError{status: http.StatusBadRequest, message: message, err: err}
+func BadRequestErr(message string, err error) *apiError {
+	return &apiError{status: http.StatusBadRequest, message: message, err: err}
 }
-func TimeoutErr(message string, err error) *ApiError {
-	return &ApiError{status: http.StatusGatewayTimeout, message: message, err: err}
+func TimeoutErr(message string, err error) *apiError {
+	return &apiError{status: http.StatusGatewayTimeout, message: message, err: err}
 
 }
-func InternalServerErr(message string, err error) *ApiError {
-	return &ApiError{status: http.StatusInternalServerError, message: message, err: err}
+func InternalServerErr(message string, err error) *apiError {
+	return &apiError{status: http.StatusInternalServerError, message: message, err: err}
 }
-func NotFounErr(message string, err error) *ApiError {
-	return &ApiError{status: http.StatusNotFound, message: message, err: err}
+func NotFounErr(message string, err error) *apiError {
+	return &apiError{status: http.StatusNotFound, message: message, err: err}
 }
-func ValidationErr(message map[string]string) *ApiError {
-	return &ApiError{status: http.StatusUnprocessableEntity, message: message, err: nil}
+func ValidationErr(message map[string]string) *apiError {
+	return &apiError{status: http.StatusUnprocessableEntity, message: message, err: nil}
 }
-func UnsupportedMediaTypeErr(message string, err error) *ApiError {
+func UnsupportedMediaTypeErr(message string, err error) *apiError {
 
-	return &ApiError{status: http.StatusUnsupportedMediaType, message: message, err: err}
+	return &apiError{status: http.StatusUnsupportedMediaType, message: message, err: err}
 }
-func UnauthorizedErr(message string, err error) *ApiError {
-	return &ApiError{status: http.StatusUnauthorized, message: message, err: err}
+func UnauthorizedErr(message string, err error) *apiError {
+	return &apiError{status: http.StatusUnauthorized, message: message, err: err}
 }
-func ConflictErr(message string, err error) *ApiError {
-	return &ApiError{status: http.StatusConflict, message: message, err: err}
+func ConflictErr(message string, err error) *apiError {
+	return &apiError{status: http.StatusConflict, message: message, err: err}
 }
-func ForbiddenErr(message string, err error) *ApiError {
-	return &ApiError{status: http.StatusForbidden, message: message, err: err}
+func ForbiddenErr(message string, err error) *apiError {
+	return &apiError{status: http.StatusForbidden, message: message, err: err}
+}
+func BadGateWayErr(message string, err error) *apiError {
+	return &apiError{status: http.StatusBadGateway, message: message, err: err}
 }
