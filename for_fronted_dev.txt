@@ -1,6 +1,10 @@
-1)Chat bot api -> localhost:4000/api/chat/stream
-you should set header as Content-Type: application/json
+Chat bot api -> localhost:4000/api/chat/stream
+-->set header as Content-Type: application/json
+--->use toast for displaying error
+---->Disable the form button until the response is finished.
 Response will come in this formate 
+
+----> use markdown parser package to handle this response 
 
 event: token
 data: {"content":"Hi"}
@@ -94,5 +98,6 @@ data: {"content":"!"}
 
 event: done
 data: {}
-ask ai to how to handle this kind of response and use MarkdownParser 
-no need to test cause you will need to download a lot of things  and we will be  doing  it all day  on the 10th
+Ask ai to handle this response and also mention header text/stream-event while prompting 
+no need to test cause you will need to download a lot of things  and we will be  doing  it all day  on the 10th (testing and fixing)
+
