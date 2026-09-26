@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import MessageBubble from "./MessageBubble";
 import TypingIndicator from "./TypingIndicator";
 
-export default function MessageList({ messages, isBotTyping }) {
+export default function MessageList({ messages, isBotTyping, onSpeak }) {
   const bottomRef = useRef(null);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ export default function MessageList({ messages, isBotTyping }) {
   }, [messages, isBotTyping]);
 
   return (
-    <div className="flex-1 space-y-4 overflow-y-auto px-4 py-6 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+    <div className="flex-1 space-y-4 overflow-y-auto px-4 py-6">
       <AnimatePresence initial={false}>
         {messages.map((msg) => (
           <MessageBubble
@@ -19,6 +19,7 @@ export default function MessageList({ messages, isBotTyping }) {
             role={msg.role}
             text={msg.text}
             timestamp={msg.timestamp}
+            onSpeak={onSpeak}
           />
         ))}
         {isBotTyping && <TypingIndicator key="typing" />}

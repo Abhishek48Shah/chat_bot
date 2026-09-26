@@ -12,18 +12,19 @@ import SplashScreen from "./components/common/SplashScreen";
 
 function ChatApp() {
   const { lang, setLang, t } = useLanguageContext();
-  const { messages, isBotTyping, send } = useChat(lang);
+  const { messages, isBotTyping, send,speakMessage } = useChat(lang);
 
   const { isRecording, isProcessing, supported, startRecording, stopRecording } =
-    useVoiceInput({
-      onTranscript: (text) => send(text),
-    });
+  useVoiceInput({
+    onTranscript: (text) => send(text, { speak: true }), // voice in → voice out
+  });
 
   return (
     <ChatWindow
       messages={messages}
       isBotTyping={isBotTyping}
       onSend={send}
+      onSpeak={speakMessage}
       disabled={isBotTyping}
       headerSlot={
         <Header
